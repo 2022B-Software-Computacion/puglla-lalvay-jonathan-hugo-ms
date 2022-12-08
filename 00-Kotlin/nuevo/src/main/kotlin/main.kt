@@ -1,4 +1,5 @@
 import java.util.*
+import kotlin.collections.ArrayList
 
 // Main.kt
 fun main() {
@@ -65,6 +66,48 @@ fun main() {
     Suma.pi
     Suma.elevarAlCuadrado(2)
     Suma.historialSumas
+
+    // Static Array
+    val arregloEstatico: Array<Int> = arrayOf<Int>(1, 2, 3)
+    println(arregloEstatico)
+
+    // Dynamic Array
+    val arregloDinamico: ArrayList<Int> = arrayListOf<Int>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    println(arregloDinamico)
+    arregloDinamico.add(11)
+    arregloDinamico.add(12)
+    println(arregloDinamico)
+
+    // OPERATORS -> Works with both array
+    // FOR EACH -> Unit
+    val respuestaForEach: Unit = arregloDinamico
+        .forEach{
+            valorActual: Int ->
+            println("Valor actual: ${valorActual}")
+        }
+    arregloEstatico
+        .forEachIndexed { indice: Int, valorActual: Int ->
+            println("Valor ${valorActual} Indice: ${indice}")
+        }
+    // Iterate in an array
+    println(respuestaForEach)
+
+    // MAP -> Muta el arreglo (Cambia el arreglo)
+    // 1) Se envía el nuevo valor de la iteración
+    // 2) Nos devuelve un NUEVO ARREGLO con los valores modificados
+
+    val respuestaMap: List<Double> = arregloDinamico
+        .map {valorActual: Int ->
+            return@map valorActual.toDouble() + 100.00
+        }
+
+    println(respuestaMap)
+
+    val respuestaMapDos = arregloDinamico.map { it + 15 }
+    // .map { valorActual: Int ->
+    // return@map valorActual + 15
+    // }
+    println(respuestaMapDos)
 }
 
 
