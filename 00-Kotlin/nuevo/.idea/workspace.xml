@@ -5,7 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c5d7ebb-0b0b-4547-8192-4d8887f5783d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/jhpl_application/ACicloVida.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/jhpl_application/FirstFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/jhpl_application/SecondFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/activity_aciclo_vida.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/content_aciclo_vida.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/fragment_first.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/fragment_second.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/navigation/nav_graph.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-land/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-w1240dp/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values-w600dp/dimens.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/dimens.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/jhpl_application/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/jhpl_application/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/themes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/values/themes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +77,7 @@
       <workItem from="1670526118374" duration="715000" />
       <workItem from="1670940407697" duration="4408000" />
       <workItem from="1671033810108" duration="1363000" />
+      <workItem from="1671545141882" duration="663000" />
     </task>
     <servers />
   </component>
