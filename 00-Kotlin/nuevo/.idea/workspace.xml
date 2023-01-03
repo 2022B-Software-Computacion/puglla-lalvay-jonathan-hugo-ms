@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c5d7ebb-0b0b-4547-8192-4d8887f5783d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../exam/exam/src/main/kotlin/Brand.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../exam/exam/src/main/kotlin/Smartphone.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../exam/exam/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../exam/exam/src/main/kotlin/Main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/jhpl_application/BBaseDatosMemoria.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/jhpl_application/BEntrenador.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/java/com/example/jhpl_application/BListView.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../01-android/app/src/main/res/layout/activity_blist_view.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../01-android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../01-android/app/src/main/AndroidManifest.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +69,7 @@
       <workItem from="1671638564307" duration="993000" />
       <workItem from="1672190939860" duration="247000" />
       <workItem from="1672699326275" duration="608000" />
+      <workItem from="1672755363264" duration="2648000" />
     </task>
     <servers />
   </component>
