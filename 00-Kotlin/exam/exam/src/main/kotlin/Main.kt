@@ -1,5 +1,5 @@
 import java.util.*
 
 fun main(){
-    println("Hello")
+    println("Fixed all files")
 }
