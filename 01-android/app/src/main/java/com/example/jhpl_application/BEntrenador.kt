@@ -8,3 +8,4 @@ class BEntrenador (
         return "Nombre: " + nombre + ", Descripción: " + descripcion
     }
 }
+
