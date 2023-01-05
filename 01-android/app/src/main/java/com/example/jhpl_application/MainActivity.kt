@@ -3,6 +3,7 @@ package com.example.jhpl_application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.AbsListView
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +20,9 @@ class MainActivity : AppCompatActivity() {
 
         // Botón del list view
         val botonListView = findViewById<Button>(R.id.btn_ir_list_view)
-        botonCicloVida
+        botonListView
             .setOnClickListener {
-                irActividad(ACicloVida::class.java)
+                irActividad(BListView::class.java)
             }
     }
 

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AlertDialog
 class BListView : AppCompatActivity() {
     val arreglo = BBaseDatosMemoria.arregloBEntrenador
     var idItemSeleccionado = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_blist_view)
@@ -53,7 +54,7 @@ class BListView : AppCompatActivity() {
         // Obtener el id del ArrayList seleccionado
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val id = info.position
-        idItemSeleccionado   = id
+        idItemSeleccionado = id
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
