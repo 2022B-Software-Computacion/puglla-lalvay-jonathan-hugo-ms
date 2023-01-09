@@ -3,19 +3,19 @@ import kotlin.collections.ArrayList
 
 // Main.kt
 fun main() {
-    println("Hello");
+    println("Hello")
 
     // Tipos de variables:
 
     // Inmutables (no se puede reasignar):
-    val inmutable: String = "Jonathan";
+    val inmutable: String = "Jonathan"
 
     // Mutables (se puede reasignar):
-    var mutable: String = "Puglla"
+    var mutable = "Puglla"
     mutable = "Lalvay";
 
     // Sintaxis Duck Typing
-    val ejemploVariable = "Ejemplo";
+    val ejemploVariable = "Ejemplo"
     val edadEjemplo: Int = 12;
     ejemploVariable.trim()
 
