@@ -8,7 +8,7 @@ val factory: DAOFactory = JPADAOFactory()
 
 abstract class DAOFactory {
 
-    companion object {
+    companion object Factory {
         /* Methods */
         /* ---------------------------------------------- */
         fun getFactory(): DAOFactory {

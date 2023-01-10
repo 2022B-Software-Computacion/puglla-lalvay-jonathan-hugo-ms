@@ -5,7 +5,7 @@ import entities.Brand
 import entities.Smartphone
 import java.io.InputStream
 
-class JPASmartphoneDAO(): JPAGenericDAO<Smartphone, Int>(), SmartphoneDAO{
+class JPASmartphoneDAO(): SmartphoneDAO{
     /* Constructor */
     /* ---------------------------------------------- */
     fun readCsv(inputStream: InputStream): List<Smartphone> {
@@ -14,18 +14,18 @@ class JPASmartphoneDAO(): JPAGenericDAO<Smartphone, Int>(), SmartphoneDAO{
         return reader.lineSequence()
             .filter { it.isNotBlank() }
             .map {
-                val (model, price, brand, id, firstSerialLetter) = it.split(',', ignoreCase = false, limit = 5)
+                val (model, price, brandId, id, firstSerialLetter) = it.split(',', ignoreCase = false, limit = 5)
                 Smartphone(
                     model.trim().toString(),
                     price.trim().toDouble(),
-                    Brand.trim().toString(),
+                    brandId.trim().toString(),
                     id.trim().toInt(),
-                    firstSerialLetter.trim().toChar()
+                    firstSerialLetter.trim()[0]
                 )
             }.toList()
     }
 
-    val smartphones = readCsv(/*Open a stream to CSV file*/)
+    //val smartphones = readCsv(/*Open a stream to CSV file*/)
 
     /* Methods */
     /* ---------------------------------------------- */
@@ -38,6 +38,22 @@ class JPASmartphoneDAO(): JPAGenericDAO<Smartphone, Int>(), SmartphoneDAO{
     }
 
     override fun getSmartphoneById(id: Int): Smartphone {
+        TODO("Not yet implemented")
+    }
+
+    override fun create(entity: Smartphone) {
+        TODO("Not yet implemented")
+    }
+
+    override fun read(id: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun update(entity: Smartphone) {
+        TODO("Not yet implemented")
+    }
+
+    override fun delete(entity: Smartphone) {
         TODO("Not yet implemented")
     }
 }
