@@ -1,12 +1,13 @@
 package entities
 
-open class Smartphone {
-    /* Attributes */
+open class Smartphone (
+    /* Constructor */
     /* ---------------------------------------------- */
-    private var model: String
-    private var price: Double
-    private var brandId: String
-    private var id: Int
+    /* Attributes */
+    /* ---------------------------------------------- */private var model: String,
+    private var price: Double,
+    private val brandId: String,
+    private val id: Int,
 
     /*
     * M -> entities.Brand New,
@@ -15,17 +16,7 @@ open class Smartphone {
     * P -> Personalized device
     * */
     private var firstSerialLetter: Char
-
-    /* Constructor */
-    /* ---------------------------------------------- */
-    constructor(model: String, price: Double, brandId: String, id: Int, firstSerialLetter: Char) {
-        this.model = model
-        this.price = price
-        this.brandId = brandId
-        this.id = id
-        this.firstSerialLetter = firstSerialLetter
-    }
-
+) {
     /* Methods */
     /* ---------------------------------------------- */
     /* Get */
@@ -58,16 +49,7 @@ open class Smartphone {
         this.price = price
     }
 
-    fun setBrandId(brandId: String) {
-        this.brandId = brandId
-    }
-
-    fun setId(id: Int) {
-        this.id = id
-    }
-
     fun setFirstSerialLetter(firstSerialLetter: Char) {
         this.firstSerialLetter = firstSerialLetter
     }
-
 }

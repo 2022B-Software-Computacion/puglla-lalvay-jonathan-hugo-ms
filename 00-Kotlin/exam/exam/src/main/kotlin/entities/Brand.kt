@@ -1,23 +1,54 @@
 package entities
 
-open class Brand() {
-    /* Attributes */
-    /* ---------------------------------------------- */
-    private var name: String? = null
-    private var hasWebpage: Boolean? = null
-    private var price: Double? = null
-    private var smartphones: ArrayList<Smartphone>? = null
-
-    // A -> Active, N -> New, B -> Banned
-    private var status: Char? = null
-
+open class Brand (
     /* Constructor */
     /* ---------------------------------------------- */
-    constructor(name: String, hasWebPage: Boolean, price: Double, smartphones: ArrayList<Smartphone>, status: Char) : this() {
+    /* Attributes */
+    /* ---------------------------------------------- */
+    private var name: String,
+    hasWebPage: Boolean,
+    private var price: Double,
+    private val foundationYear: Int,// A -> Active, N -> New, B -> Banned
+    private var status: Char,
+    private var hasWebpage: Boolean = hasWebPage
+) {
+    /* Methods */
+    /* ---------------------------------------------- */
+    /* Get */
+    fun getName(): String {
+        return this.name
+    }
+
+    fun getHasWebPage(): Boolean {
+        return this.hasWebpage
+    }
+
+    fun getPrice(): Double {
+        return this.price
+    }
+
+    fun getFoundationYear(): Int {
+        return this.foundationYear
+    }
+
+    fun getStatus(): Char {
+        return this.status
+    }
+
+    /* Set */
+    fun setName(name: String) {
         this.name = name
-        this.hasWebpage = hasWebPage
+    }
+
+    fun getHasWebPage(hasWebPage: Boolean) {
+        this.hasWebpage = hasWebpage
+    }
+
+    fun setPrice(price: Double) {
         this.price = price
-        this.smartphones = smartphones
+    }
+
+    fun getStatus(status: Char) {
         this.status = status
     }
 }
