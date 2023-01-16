@@ -5,9 +5,9 @@ import entities.Smartphone
 interface SmartphoneDAO: GenericDAO<Smartphone, Int> {
     /* Methods */
     /* ---------------------------------------------- */
-    fun getSmartphonesByBrandName(brandName: String): ArrayList<Smartphone>
+    fun getSmartphonesByBrandId(brandId: Int): ArrayList<Smartphone>
 
-    fun getModels(): ArrayList<String>
+    fun getAllSmartphones(): ArrayList<Smartphone>
 
     fun getSmartphoneById(id: Int): Smartphone
 }

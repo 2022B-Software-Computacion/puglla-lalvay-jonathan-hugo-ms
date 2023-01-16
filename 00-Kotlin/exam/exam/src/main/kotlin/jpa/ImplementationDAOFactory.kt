@@ -4,15 +4,15 @@ import dao.BrandDAO
 import dao.DAOFactory
 import dao.SmartphoneDAO
 
-class JPADAOFactory: DAOFactory() {
+class ImplementationDAOFactory: DAOFactory() {
     /* Methods */
     /* ---------------------------------------------- */
     override fun getSmartphoneDAO(): SmartphoneDAO {
-        TODO("Not yet implemented")
+        return ImplementationSmartphoneDAO()
     }
 
     override fun getBrandDAO(): BrandDAO {
-        TODO("Not yet implemented")
+        return ImplementationBrandDAO()
     }
 
 }

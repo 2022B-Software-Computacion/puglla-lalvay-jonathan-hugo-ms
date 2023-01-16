@@ -1,21 +1,18 @@
 package dao
 
-import jpa.JPADAOFactory
-
-/* Attributes */
-/* ---------------------------------------------- */
-val factory: DAOFactory = JPADAOFactory()
+import jpa.ImplementationDAOFactory
 
 abstract class DAOFactory {
-
-    companion object Factory {
-        /* Methods */
-        /* ---------------------------------------------- */
+    /* Attributes */
+    /* ---------------------------------------------- */
+    companion object {
         fun getFactory(): DAOFactory {
-            return factory
+            return ImplementationDAOFactory()
         }
     }
 
+    /* Methods */
+    /* ---------------------------------------------- */
     abstract fun getSmartphoneDAO(): SmartphoneDAO
 
     abstract fun getBrandDAO(): BrandDAO

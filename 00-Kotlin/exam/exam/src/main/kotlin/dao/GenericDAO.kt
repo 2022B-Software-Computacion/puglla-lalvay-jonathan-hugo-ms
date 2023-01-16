@@ -11,5 +11,5 @@ interface GenericDAO<T, ID> {
 
     fun update(entity: T)
 
-    fun delete(entity: T)
+    fun delete(id: ID)
 }

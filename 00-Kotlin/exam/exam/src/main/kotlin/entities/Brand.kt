@@ -5,12 +5,12 @@ open class Brand (
     /* ---------------------------------------------- */
     /* Attributes */
     /* ---------------------------------------------- */
+    private val id: Int,
     private var name: String,
-    hasWebPage: Boolean,
-    private var price: Double,
-    private val foundationYear: Int,// A -> Active, N -> New, B -> Banned
+    private var price: Number,
+    // A -> Active, N -> New, B -> Banned
     private var status: Char,
-    private var hasWebpage: Boolean = hasWebPage
+    private var hasWebpage: Boolean
 ) {
     /* Methods */
     /* ---------------------------------------------- */
@@ -19,16 +19,16 @@ open class Brand (
         return this.name
     }
 
-    fun getHasWebPage(): Boolean {
+    fun getHasWebpage(): Boolean {
         return this.hasWebpage
     }
 
-    fun getPrice(): Double {
+    fun getPrice(): Number {
         return this.price
     }
 
-    fun getFoundationYear(): Int {
-        return this.foundationYear
+    fun getId(): Int {
+        return this.id
     }
 
     fun getStatus(): Char {
@@ -40,15 +40,19 @@ open class Brand (
         this.name = name
     }
 
-    fun getHasWebPage(hasWebPage: Boolean) {
+    fun getHasWebpage(hasWebpage: Boolean) {
         this.hasWebpage = hasWebpage
     }
 
-    fun setPrice(price: Double) {
+    fun setPrice(price: Number) {
         this.price = price
     }
 
     fun getStatus(status: Char) {
         this.status = status
+    }
+
+    override fun toString(): String {
+        return  "$id \t$name \t$${price}B \t$status \t$hasWebpage"
     }
 }

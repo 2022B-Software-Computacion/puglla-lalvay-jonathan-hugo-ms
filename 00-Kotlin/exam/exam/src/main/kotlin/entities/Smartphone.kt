@@ -4,9 +4,7 @@ open class Smartphone (
     /* Constructor */
     /* ---------------------------------------------- */
     /* Attributes */
-    /* ---------------------------------------------- */private var model: String,
-    private var price: Double,
-    private val brandId: String,
+    /* ---------------------------------------------- */
     private val id: Int,
 
     /*
@@ -15,8 +13,12 @@ open class Smartphone (
     * N -> Replacement device, and
     * P -> Personalized device
     * */
-    private var firstSerialLetter: Char
-) {
+    private var serialType: Char,
+    private var model: String,
+    private val brandId: Int,
+    private var price: Double,
+
+    ) {
     /* Methods */
     /* ---------------------------------------------- */
     /* Get */
@@ -28,7 +30,7 @@ open class Smartphone (
         return this.price
     }
 
-    fun getBrandId(): String {
+    fun getBrandId(): Int {
         return this.brandId
     }
 
@@ -36,8 +38,8 @@ open class Smartphone (
         return this.id
     }
 
-    fun getFirstSerialLetter(): Char {
-        return this.firstSerialLetter
+    fun getSerialType(): Char {
+        return this.serialType
     }
 
     /* Set */
@@ -49,7 +51,11 @@ open class Smartphone (
         this.price = price
     }
 
-    fun setFirstSerialLetter(firstSerialLetter: Char) {
-        this.firstSerialLetter = firstSerialLetter
+    fun setSerialType(serialType: Char) {
+        this.serialType = serialType
+    }
+
+    override fun toString(): String {
+        return  "$id \t$serialType \t$model \t$brandId \t$${price}"
     }
 }
