@@ -5,8 +5,8 @@ import android.os.Parcelable
 
 class BEntrenador (
     var id: Int,
-    val nombre: String?,
-    val descripcion: String?,
+    var nombre: String?,
+    var descripcion: String?,
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
