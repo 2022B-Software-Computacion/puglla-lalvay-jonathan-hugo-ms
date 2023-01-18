@@ -88,7 +88,7 @@ class ESqliteHelperEntrenador (
         return resultadoActualizacion != -1
     }
 
-    fun consultarEntrenadorPor(id: Int): BEntrenador {
+    fun consultarEntrenadorPorId(id: Int): BEntrenador {
         // val baseDatosLectura = this.readableDatabase
         val baseDatosLectura = readableDatabase
         val scriptConsultarUsuario = "SELECT * FROM ENTRENADOR WHERE ID = ?"
