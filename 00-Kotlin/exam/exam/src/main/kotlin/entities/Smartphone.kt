@@ -5,16 +5,16 @@ open class Smartphone (
     /* ---------------------------------------------- */
     /* Attributes */
     /* ---------------------------------------------- */
-    private val id: Int,
+    private var id: Int,
 
     /*
-    * M -> entities.Brand New,
+    * M -> Brand New,
     * F -> Refurbished,
     * N -> Replacement device, and
     * P -> Personalized device
     * */
-    private var serialType: Char,
-    private var model: String,
+    private val serialType: Char,
+    private val model: String,
     private val brandId: Int,
     private var price: Double,
 
@@ -43,19 +43,18 @@ open class Smartphone (
     }
 
     /* Set */
-    fun setModel(model: String) {
-        this.model = model
+    fun setId(id: Int) {
+        this.id = id
     }
 
     fun setPrice(price: Double) {
         this.price = price
     }
 
-    fun setSerialType(serialType: Char) {
-        this.serialType = serialType
-    }
-
     override fun toString(): String {
-        return  "$id \t$serialType \t$model \t$brandId \t$${price}"
+        return  String.format(
+            "| %-8s | %-15s | %-15s | %-8s | %-15s |",
+            "$id","$serialType", model,"$brandId","$${price}"
+        )
     }
 }

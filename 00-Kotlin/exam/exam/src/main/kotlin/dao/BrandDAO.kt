@@ -7,7 +7,7 @@ interface BrandDAO: GenericDAO<Brand, Int> {
     /* ---------------------------------------------- */
     fun getAllBrands(): ArrayList<Brand>
 
-    fun getBrandsByName(name: String): ArrayList<Brand>
+    fun getBrandByName(name: String): Brand
 
     fun getActiveBrands(): ArrayList<Brand>
 }

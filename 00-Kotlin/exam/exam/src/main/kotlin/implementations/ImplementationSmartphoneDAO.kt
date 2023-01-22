@@ -1,4 +1,4 @@
-package jpa
+package implementations
 
 import dao.SmartphoneDAO
 import entities.Smartphone
@@ -9,7 +9,7 @@ import java.io.OutputStream
 class ImplementationSmartphoneDAO: SmartphoneDAO{
     /* Attributes */
     /* ---------------------------------------------- */
-    private val mySmartphones = getSmartphonesFromCSV()
+    private val mySmartphones = this.getSmartphonesFromCSV()
 
     /* Methods */
     /* ---------------------------------------------- */
@@ -36,8 +36,8 @@ class ImplementationSmartphoneDAO: SmartphoneDAO{
     }
 
      private fun OutputStream.saveSmartphonesOnCSV(smartphones: ArrayList<Smartphone>) {
-        val writer = bufferedWriter()
-        writer.write("""Id,Serial Type,Model,Brand Id,Price """)
+        val writer = this.bufferedWriter()
+        writer.write("""id,serial_type,model,brand_id,price""")
         writer.newLine()
         smartphones.forEach {
             writer.write(
@@ -55,10 +55,16 @@ class ImplementationSmartphoneDAO: SmartphoneDAO{
     override fun getSmartphonesByBrandId(brandId: Int): ArrayList<Smartphone> {
         val foundSmartphones = ArrayList<Smartphone>()
 
-        mySmartphones.forEach { smartphone ->
+        this.mySmartphones.forEach { smartphone ->
             if(brandId == smartphone.getBrandId()){
                 foundSmartphones.add(smartphone)
             }
+        }
+
+        if (foundSmartphones.isEmpty()){
+            foundSmartphones.add(
+                Smartphone(0, 'N', "null", 0, 0.0)
+            )
         }
 
         return foundSmartphones
@@ -66,80 +72,116 @@ class ImplementationSmartphoneDAO: SmartphoneDAO{
 
     /* Gets all the smartphones */
     override fun getAllSmartphones(): ArrayList<Smartphone> {
-        mySmartphones.forEachIndexed { index, smartphone ->
-            println("$smartphone at index: $index")
-        }
-
-        return mySmartphones
+        return this.mySmartphones
     }
 
-    /* Gets all the smartphones based on the given identifier */
+    /* Gets the smartphone based on the given identifier */
     override fun getSmartphoneById(id: Int): Smartphone {
-        var location = 0
-        mySmartphones.forEachIndexed { index, smartphone ->
+        val smartphones = ArrayList<Smartphone>()
+
+        this.mySmartphones.forEach { smartphone ->
             if(id == smartphone.getId()){
-                location = index
+                smartphones.add(smartphone)
             }
         }
 
-        return mySmartphones[location]
+        if (smartphones.isEmpty()) {
+            smartphones.add(
+                Smartphone(0, 'N', "null", 0, 0.0)
+            )
+        }
+
+        return smartphones[0]
     }
 
     /* CRUD Operations */
 
     /* Creates a new smartphone */
     override fun create(entity: Smartphone) {
-        val exists: Boolean = mySmartphones
+        val lastId: Int = this.mySmartphones.last().getId()
+
+        val idExists: Boolean = this.mySmartphones
             .any{smartphone ->
                 return@any (smartphone.getId() == entity.getId())
             }
 
-        if (!exists) {
-            mySmartphones.add(entity)
-            FileOutputStream("src/main/assets/SmartphonesData.csv").apply{
-                saveSmartphonesOnCSV(mySmartphones)
+        val modelExists: Boolean = this.mySmartphones
+            .any {smartphone ->
+                return@any (smartphone.getModel().uppercase() == entity.getModel().uppercase())
             }
-        } else {
+
+        if (idExists || modelExists) {
             println("The smartphone already exists")
+            return
         }
+
+        println("Creating the Smartphone...")
+        entity.setId(lastId + 1)
+        this.mySmartphones.add(entity)
+        FileOutputStream("src/main/assets/SmartphonesData.csv").apply{
+            this.saveSmartphonesOnCSV(this@ImplementationSmartphoneDAO.mySmartphones)
+        }
+        println("Smartphone created successfully!")
     }
 
     /* Reads a smartphone based on the given id */
     override fun read(id: Int) {
-        mySmartphones.forEachIndexed { index, smartphone ->
+        var exists = false
+
+        this.mySmartphones.forEach { smartphone ->
             if(id == smartphone.getId()){
-                println(mySmartphones[index])
+                println(smartphone)
+                exists = true
             }
+        }
+
+        if(!exists){
+            println("The smartphone does not exist")
         }
     }
 
     /* Updates a smartphone */
     override fun update(entity: Smartphone) {
-        mySmartphones.forEachIndexed { index, smartphone ->
+        var exists = false
+
+        this.mySmartphones.forEachIndexed { index, smartphone ->
             smartphone.takeIf { it.getId() == entity.getId()}?.let {
-                mySmartphones[index] = entity
+                this.mySmartphones[index] = entity
+                exists = true
             }
         }
+
+        if (!exists) {
+            println("No data available to update")
+            return
+        }
+
         FileOutputStream("src/main/assets/SmartphonesData.csv").apply {
-            saveSmartphonesOnCSV(mySmartphones)
+            this.saveSmartphonesOnCSV(this@ImplementationSmartphoneDAO.mySmartphones)
         }
     }
 
     /* Deletes a smartphone based on its id */
     override fun delete(id: Int) {
-        val exists: Boolean = mySmartphones
+        var newId = 0
+        val exists: Boolean = this.mySmartphones
             .any{smartphone ->
                 return@any (smartphone.getId() == id)
             }
 
         if (!exists) {
             println("Smartphone could not be removed, it does not exist")
-        } else {
-            mySmartphones.removeIf {it.getId() == id}
-
-            FileOutputStream("src/main/assets/SmartphonesData.csv").apply {
-                saveSmartphonesOnCSV(mySmartphones)
-            }
         }
+
+        this.mySmartphones.removeIf {it.getId() == id}
+        this.mySmartphones.forEach { smartphone ->
+            newId += 1
+            smartphone.setId(newId)
+        }
+
+        FileOutputStream("src/main/assets/SmartphonesData.csv").apply {
+            this.saveSmartphonesOnCSV(this@ImplementationSmartphoneDAO.mySmartphones)
+        }
+        println("Smartphone removed successfully")
     }
 }

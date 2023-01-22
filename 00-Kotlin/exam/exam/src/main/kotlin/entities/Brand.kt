@@ -5,7 +5,7 @@ open class Brand (
     /* ---------------------------------------------- */
     /* Attributes */
     /* ---------------------------------------------- */
-    private val id: Int,
+    private var id: Int,
     private var name: String,
     private var price: Number,
     // A -> Active, N -> New, B -> Banned
@@ -40,7 +40,11 @@ open class Brand (
         this.name = name
     }
 
-    fun getHasWebpage(hasWebpage: Boolean) {
+    fun setId(id: Int) {
+        this.id = id
+    }
+
+    fun setHasWebpage(hasWebpage: Boolean) {
         this.hasWebpage = hasWebpage
     }
 
@@ -48,11 +52,14 @@ open class Brand (
         this.price = price
     }
 
-    fun getStatus(status: Char) {
+    fun setStatus(status: Char) {
         this.status = status
     }
 
     override fun toString(): String {
-        return  "$id \t$name \t$${price}B \t$status \t$hasWebpage"
+        return  String.format(
+            "| %-8s | %-15s | %-15s | %-8s | %-15s |",
+            "$id", name,"$${price}B","$status","$hasWebpage"
+        )
     }
 }

@@ -1,6 +1,6 @@
 package dao
 
-import jpa.ImplementationDAOFactory
+import implementations.ImplementationDAOFactory
 
 abstract class DAOFactory {
     /* Attributes */

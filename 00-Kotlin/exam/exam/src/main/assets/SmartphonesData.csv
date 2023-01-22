@@ -1,4 +1,6 @@
-Id,Serial Type,Model,Brand Id,Price 
-1,F,A330F,1,1899.5
-2,F,A340F,1,1799.5
-3,F,A3590,2,799.5
+id,serial_type,model,brand_id,price
+1,F,iPhone 11,1,899.0
+2,F,Samsung A50,2,999.99
+3,F,iPhone X,1,599.0
+4,M,Samsung S22,2,900.0
+5,M,iPhone 14 Plus,1,700.0

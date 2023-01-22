@@ -1,4 +1,6 @@
-Id,Name,Price,Status,Webpage
+id,name,price,status,has_webpage
 1,Apple,200.0,N,true
 2,Samsung,100.0,A,true
-3,Apple,200.0,A,true
+3,Asus Mobile,300.0,A,true
+4,Epsi,300.0,N,false
+5,Beta,200.0,N,false

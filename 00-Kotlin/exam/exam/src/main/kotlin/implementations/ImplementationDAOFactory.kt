@@ -1,4 +1,4 @@
-package jpa
+package implementations
 
 import dao.BrandDAO
 import dao.DAOFactory
