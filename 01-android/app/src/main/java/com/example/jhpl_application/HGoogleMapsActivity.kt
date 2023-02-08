@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PackageManagerCompat
@@ -22,6 +23,17 @@ class HGoogleMapsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_hgoogle_maps2)
         solicitarPermisos()
         iniciarLogicaMapa()
+
+        val boton = findViewById<Button>(R.id.btn_ir_carolina)
+        boton.setOnClickListener {
+            irCarolina()
+        }
+    }
+
+    fun irCarolina(){
+        val carolina = LatLng(-0.1825684318486696, -78.48447277600916)
+        val zoom = 17f
+        moverCamaraConZoom(carolina, zoom)
     }
 
     fun iniciarLogicaMapa(){
@@ -39,18 +51,20 @@ class HGoogleMapsActivity : AppCompatActivity() {
                 val markQUicentro = anadirMarcador(quicentro, titulo)
                 markQUicentro.tag = titulo
 
-                val poliLineaUno = googleMap.addPolyline(
-                    PolylineOptions()
-                        .clickable(true)
-                        .add(
-                            LatLng(-0.1759187040647396,
-                                -78.48506472421384),
-                            LatLng(-0.17632468492901104,
-                                -78.48265589308046),
-                            LatLng(-0.17746143130181483,
-                                -78.4770533307815)
-                        )
-                )
+                val poliLineaUno = googleMap
+                    .addPolyline(
+                        PolylineOptions()
+                            .clickable(true)
+                            .add(
+                                LatLng(-0.1759187040647396,
+                                    -78.48506472421384),
+                                LatLng(-0.17632468492901104,
+                                    -78.48265589308046),
+                                LatLng(-0.17746143130181483,
+                                    -78.4770533307815)
+                            )
+                    )
+                poliLineaUno.tag = "linea-1" // ID
 
                 // POLIGONO
                 val poligonoUno = googleMap
@@ -59,11 +73,11 @@ class HGoogleMapsActivity : AppCompatActivity() {
                             .clickable(true)
                             .add(
                                 LatLng(-0.1771546902239471,
-                                -78.48344981486125768),
-                                LatLng(-0.117968981486125768,
-                                -78.48269198043828),
+                                    -78.48344981495214),
+                                LatLng(-0.17968981486125768,
+                                    -78.48269198043828),
                                 LatLng(-0.17710958124147777,
-                                -78.48142892291516),
+                                    -78.48142892291516)
                             )
                     )
                 poligonoUno.fillColor = -0xc771c4
