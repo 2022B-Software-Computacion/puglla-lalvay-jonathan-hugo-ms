@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "755928369646",
+    "project_id": "jhpl-instagram",
+    "storage_bucket": "jhpl-instagram.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755928369646:android:7b4fa1182efe5e376126ff",
+        "android_client_info": {
+          "package_name": "com.example.jhpl_instagram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755928369646-om8n6tq29r7e6dtifbujklclfg9lvkhl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7RMpqazgTdRgzuEqYoblPerqTYn3bVZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755928369646-om8n6tq29r7e6dtifbujklclfg9lvkhl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
