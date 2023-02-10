@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "755928369646",
-    "project_id": "jhpl-instagram",
-    "storage_bucket": "jhpl-instagram.appspot.com"
+    "project_number": "391457347814",
+    "firebase_url": "https://jhpl-instagram-28a17-default-rtdb.firebaseio.com",
+    "project_id": "jhpl-instagram-28a17",
+    "storage_bucket": "jhpl-instagram-28a17.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:755928369646:android:7b4fa1182efe5e376126ff",
+        "mobilesdk_app_id": "1:391457347814:android:40d63087729040624b0327",
         "android_client_info": {
           "package_name": "com.example.jhpl_instagram"
         }
       },
       "oauth_client": [
         {
-          "client_id": "755928369646-om8n6tq29r7e6dtifbujklclfg9lvkhl.apps.googleusercontent.com",
+          "client_id": "391457347814-jddtd0hr0eqfspe1scusvj878aeapa0m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC7RMpqazgTdRgzuEqYoblPerqTYn3bVZw"
+          "current_key": "AIzaSyCOl8heN1k3NKmvyBMeL-v9CcWQpPpGsOo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "755928369646-om8n6tq29r7e6dtifbujklclfg9lvkhl.apps.googleusercontent.com",
+              "client_id": "391457347814-jddtd0hr0eqfspe1scusvj878aeapa0m.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
