@@ -1,10 +1,20 @@
 <resources>
-    <string name="app_name">jhpl-instagram</string>
-    <string name="email_edt">Email</string>
-    <string name="password_edt">Password</string>
-    <string name="login_btn">Login</string>
-    <string name="register_txt">Register</string>
-    <string name="confirm_password_edt">Confirm Password</string>
-    <string name="register_btn">Register</string>
-    <string name="user_name_edt">Username</string>
+    <string name="app_name" translatable="false">Instagram</string>
+    <string name="email_edt" translatable="false">Email</string>
+    <string name="password_edt" translatable="false">Password</string>
+    <string name="login_btn" translatable="false">Login</string>
+    <string name="register_txt" translatable="false">Create New Account</string>
+    <string name="fullname_edt" translatable="false">Full Name</string>
+    <string name="confirm_password_edt" translatable="false">Confirm Password</string>
+    <string name="register_btn" translatable="false">Register</string>
+    <string name="user_name_edt" translatable="false">Username</string>
+    <string name="upload_title_txt" translatable="false">Upload your avatar</string>∂
+    <string name="upload_post_txt" translatable="false">Upload your post or video</string>
+    <string name="create_post_btn" translatable="false">Create a post</string>
+    <string name="ella_txt" translatable="false">Ella</string>
+    <string name="follow_txt" translatable="false">Follow</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="feed" translatable="false">Feed</string>
+    <string name="notifications" translatable="false">Notifications</string>
+    <string name="profile" translatable="false">Profile</string>
 </resources>

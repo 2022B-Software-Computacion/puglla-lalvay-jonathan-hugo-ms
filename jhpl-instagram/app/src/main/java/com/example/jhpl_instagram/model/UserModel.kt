@@ -1,6 +1,8 @@
 package com.example.jhpl_instagram.model
 
 class UserModel {
+    /* Attributes */
+    /* ---------------------------------------------------------------- */
     var uid: String? = null
     var name: String? = null
     var email: String? = null
