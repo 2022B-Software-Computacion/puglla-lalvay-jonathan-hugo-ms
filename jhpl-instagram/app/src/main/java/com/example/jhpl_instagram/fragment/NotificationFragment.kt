@@ -1,6 +1,7 @@
 package com.example.jhpl_instagram.fragment
 
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -58,18 +59,19 @@ class NotificationFragment : Fragment() {
 
     private fun initViews() {
         notificationRv = this.requireView().findViewById(R.id.notificationRv)
-        pDialog = this.context?.let { setProgressDialog(it, "Loading") }
+        pDialog = ProgressDialog(this.context)
+        pDialog!!.setMessage("Loading")
         pDialog!!.setCanceledOnTouchOutside(false)
     }
 
     private fun initFirebaseDatabase() {
         mDatabase =
-            FirebaseDatabase.getInstance(Constants.FIREBASE_REALTIME_DATABASE_URL).reference
+            FirebaseDatabase.getInstance(Constants.FIREBASE_REALTIME_DATABASE_URL).getReference()
     }
 
     private fun initRecyclerView(notifications: ArrayList<Notification>?) {
         if (notifications == null) {
-            return
+            return;
         }
         notificationRv!!.layoutManager = LinearLayoutManager(this.context)
         val adapter = this.context?.let { NotificationAdapter(it, notifications) }
@@ -89,7 +91,7 @@ class NotificationFragment : Fragment() {
                         if (dataSnapshot.children.count() > 0) {
                             for (notificationSnapshot in dataSnapshot.children) {
                                 val notification = notificationSnapshot.getValue(Notification::class.java)
-                                if (notification != null && notification.receiverId!! == cometChatUser.uid) {
+                                if (notification != null && notification.receiverId!!.equals(cometChatUser.uid)) {
                                     notifications.add(notification)
                                 }
                             }
@@ -112,6 +114,15 @@ class NotificationFragment : Fragment() {
     }
 
     companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment NotificationFragment.
+         */
+        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             NotificationFragment().apply {

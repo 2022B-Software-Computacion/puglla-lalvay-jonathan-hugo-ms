@@ -11,6 +11,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.provider.MediaStore
@@ -143,8 +144,13 @@ class CreateActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+//    private fun uriToBitmap(uri: Uri): Bitmap {
+//        return MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+//    }
+
     private fun uriToBitmap(uri: Uri): Bitmap {
-        return MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+        val inputStream = this.contentResolver.openInputStream(uri)
+        return BitmapFactory.decodeStream(inputStream)
     }
 
     private fun goToMainActivity() {
@@ -206,7 +212,11 @@ class CreateActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun uploadPostContent() {
         if (uploadedUri == null) {
-            Toast.makeText(this@CreateActivity, "Please upload the post image or video", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                this@CreateActivity,
+                "Please upload the post image or video",
+                Toast.LENGTH_LONG
+            ).show()
             return
         }
         progressDialog!!.show()

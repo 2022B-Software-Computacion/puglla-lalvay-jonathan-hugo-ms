@@ -41,7 +41,8 @@
             android:background="@drawable/input"
             android:hint="@string/fullname_edt"
             android:inputType="textEmailAddress"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColorHint="@color/grey" />
 
         <EditText
             android:id="@+id/emailEdt"
@@ -50,7 +51,8 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/input"
             android:hint="@string/email_edt"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColorHint="@color/grey" />
 
         <EditText
             android:id="@+id/passwordEdt"
@@ -60,7 +62,8 @@
             android:background="@drawable/input"
             android:hint="@string/password_edt"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColorHint="@color/grey" />
 
         <EditText
             android:id="@+id/confirmPasswordEdt"
@@ -70,7 +73,8 @@
             android:background="@drawable/input"
             android:hint="@string/confirm_password_edt"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColorHint="@color/grey" />
 
         <Button
             android:id="@+id/registerBtn"

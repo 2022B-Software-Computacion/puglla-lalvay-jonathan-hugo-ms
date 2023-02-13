@@ -29,6 +29,7 @@ import com.cometchat.pro.uikit.R
 import com.cometchat.pro.uikit.databinding.ActivityCometchatUnifiedBinding
 import com.cometchat.pro.uikit.ui_components.calls.call_list.CometChatCallList
 import com.cometchat.pro.uikit.ui_components.chats.CometChatConversationList
+import com.cometchat.pro.uikit.ui_components.groups.create_group.CometChatCreateGroupActivity
 import com.cometchat.pro.uikit.ui_components.groups.group_list.CometChatGroupList
 import com.cometchat.pro.uikit.ui_components.messages.message_list.CometChatMessageListActivity
 import com.cometchat.pro.uikit.ui_components.userProfile.CometChatUserProfile
@@ -43,7 +44,6 @@ import com.cometchat.pro.uikit.ui_settings.FeatureRestriction
 import com.cometchat.pro.uikit.ui_settings.UIKitSettings
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.launch
 import java.util.*
 
 /**
@@ -73,6 +73,7 @@ class CometChatUI : AppCompatActivity(), BottomNavigationView.OnNavigationItemSe
     private var progressDialog: ProgressDialog? = null
     private var groupPassword: String? = null
     private var group: Group? = null
+    private var loggedInUsername: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityCometChatUnifiedBinding = DataBindingUtil.setContentView(this, R.layout.activity_cometchat_unified)
@@ -124,7 +125,7 @@ class CometChatUI : AppCompatActivity(), BottomNavigationView.OnNavigationItemSe
     }
 
     private fun setUserClickListener() {
-        CometChatUserList.Companion.setItemClickListener(object : OnItemClickListener<Any>() {
+        CometChatUserList.setItemClickListener(object : OnItemClickListener<Any>() {
             override fun OnItemClick(t: Any, position: Int) {
                 startUserIntent(t as User)
             }

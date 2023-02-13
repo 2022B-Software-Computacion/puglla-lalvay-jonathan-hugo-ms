@@ -11,12 +11,11 @@ import com.bumptech.glide.Glide
 import com.example.jhpl_instagram.R
 import com.example.jhpl_instagram.model.Notification
 
-class NotificationAdapter (
+class NotificationAdapter(
     private val context: Context,
     private val notifications: List<Notification>,
 ) : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
-    /* Methods */
-    /* ---------------------------------------------------------------- */
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.notification_item, parent, false)
