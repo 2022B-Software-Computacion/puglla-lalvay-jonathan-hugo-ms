@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Jhplapplication"
         tools:targetApi="31">
         <activity
+            android:name=".JFirebaseFirestore"
+            android:exported="false" />
+        <activity
             android:name=".IFirebaseUIAuth"
             android:exported="false">
             <meta-data
