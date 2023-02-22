@@ -28,8 +28,86 @@ class JFirebaseFirestore : AppCompatActivity() {
 
         val botonDatosPrueba = findViewById<Button>(R.id.btn_fs_datos_prueba)
         botonDatosPrueba.setOnClickListener { crearDatosPrueba() }
+
+        val botonOrderBy = findViewById<Button>(R.id.btn_fs_order_by)
+        botonOrderBy.setOnClickListener { consultarConOrderBy(adaptador) }
+
+        val botonObtenerDocumento = findViewById<Button>(R.id.btn_fs_odoc)
+        botonObtenerDocumento.setOnClickListener{
+            consultarDocumento(adaptador)
+        }
+
+        val botonFirebaseIndiceCompuesto = findViewById<Button>(R.id.btn_fs_ind_comp)
+        botonFirebaseIndiceCompuesto.setOnClickListener{
+            consultarIndiceCompuesto(adaptador)
+        }
     }
 
+    fun consultarIndiceCompuesto(adaptador: ArrayAdapter<JCitiesDto>) {
+        val db = Firebase.firestore
+        val citiesRefUnico = db.collection("cities")
+        citiesRefUnico
+            .whereEqualTo("capital", false)
+            .whereLessThanOrEqualTo("population", 4000000)
+            .orderBy("population",
+                com.google.firebase.firestore.Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                for (ciudad in it) {
+                    anadirAArregloCiudad(arreglo, ciudad, adaptador)
+                }
+            }
+    }
+
+    fun  consultarConOrderBy(
+        adaptador: ArrayAdapter<JCitiesDto>
+    ) {
+        val db = Firebase.firestore
+        val citiesRefUnico = db.collection("cities")
+        limpiarArreglo()
+        adaptador.notifyDataSetChanged()
+        citiesRefUnico
+        // No USAMOS CON DOCUMENT porque document nos devuelve 1
+        // /cities => "population" ASCENDING
+            .orderBy("population", com.google.firebase.firestore.Query.Direction.ASCENDING)
+            .get()
+            .addOnSuccessListener {
+                for(ciudad in it) {
+                    anadirAArregloCiudad(arreglo, ciudad, adaptador)
+                }
+            }
+    }
+
+    fun consultarDocumento( adaptador: ArrayAdapter<JCitiesDto> ) {
+        val db = Firebase.firestore
+        val citiesRefUnico = db
+            .collection("cities")
+        // /cities/BJ (1 documento)
+        // /cities/BG/hijo/1/nieto/1.1
+
+        citiesRefUnico
+            .document("BJ")
+//            .collection("hijo")
+//            .document("1")
+//            .collection("nieto")
+//            .document("1.1")
+            .get()
+            .addOnSuccessListener {
+                it.id // obtener el id de firestore
+                limpiarArreglo()
+                arreglo.add(
+                    JCitiesDto(
+                        it.data?.get("name") as String?,
+                        it.data?.get("state") as String?,
+                        it.data?.get("country") as String?,
+                        it.data?.get("capital") as Boolean?,
+                        it.data?.get("population") as Long?,
+                        it.data?.get("regions") as ArrayList<String>
+                    )
+                )
+                adaptador.notifyDataSetChanged()
+            }
+    }
     private fun crearDatosPrueba() {
         val db = Firebase.firestore // objeto Firestore
         val cities = db.collection("cities") // nombre de la colección
