@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "284831964710",
+    "project_id": "jhpl-exam2b",
+    "storage_bucket": "jhpl-exam2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284831964710:android:eedd358ac70b27ec8790e7",
+        "android_client_info": {
+          "package_name": "com.example.jhpl_exam2b"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "284831964710-vht23b3ntm3av3416uujm5loulf40mq6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtrc9TCH-lGeboWJsXLCu93k6x3zykx5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "284831964710-vht23b3ntm3av3416uujm5loulf40mq6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

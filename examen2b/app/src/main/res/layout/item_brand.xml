@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".adapter.BrandAdapter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/brandImageView"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/place_holder"
+            tools:ignore="MissingConstraints"
+            android:contentDescription="TODO" />
+
+        <TextView
+            android:id="@+id/brandNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="@string/brand_name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/arrow_right"
+            tools:ignore="MissingConstraints"
+            android:contentDescription="TODO" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
