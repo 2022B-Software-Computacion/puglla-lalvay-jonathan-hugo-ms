@@ -3,8 +3,6 @@ package com.example.jhpl_exam2b.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jhpl_exam2b.R
 import com.example.jhpl_exam2b.adapter.BrandAdapter
@@ -32,12 +30,13 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.add(R.id.fragment_brand, brandListFragment)
         fragmentTransaction.commit()
 
-        val newBrand1 = Brand(name = "Test Brand 1", price = 100.0, status = "A", hasAWebPage = true)
-        val newBrand2 = Brand(name = "Test Brand 2", price = 200.0, status = "A", hasAWebPage = true)
-        val newBrand3 = Brand(name = "Test Brand 3", price = 300.0, status = "A", hasAWebPage = true)
-        brands.add(newBrand1)
-        brands.add(newBrand2)
-        brands.add(newBrand3)
+        val appleBrand = Brand(name = "Apple", price = 100000.0, status = "A", hasAWebPage = true)
+        val samsungBrand = Brand(name = "Samsung", price = 200000.0, status = "A", hasAWebPage = true)
+        val googleBrand = Brand(name = "Google", price = 300000.0, status = "A", hasAWebPage = true)
+        brands.add(appleBrand)
+        brands.add(samsungBrand)
+        brands.add(googleBrand)
+
         //recyclerView = findViewById(R.id.brandRV)
 //        val layoutManager = GridLayoutManager(this, 2)
 //        recyclerView.layoutManager = layoutManager
@@ -45,23 +44,47 @@ class MainActivity : AppCompatActivity() {
 //        adapter = BrandAdapter(brands)
 //        recyclerView.adapter = adapter
 
-
-        firestoreHelper.addBrand(newBrand1) { brandId ->
+        firestoreHelper.addBrand(appleBrand) { brandId ->
             if (brandId != null) {
-                newBrand1.id = brandId
-                Log.d("MainActivity", "Added brand: $newBrand1")
+                appleBrand.id = brandId
+                Log.d("MainActivity", "Added brand: $appleBrand")
 
                 // Create a new smartphone for the brand
-                val newSmartphone = Smartphone(
-                    modelName = "Test Smartphone 1",
-                    price = 1000.0,
-                    brandId = newBrand1.id,
+                val mySmartphone = Smartphone(
+                    modelName = "iPhone 14 Pro Max",
+                    price = 1099.0,
+                    brandId = appleBrand.id,
                     serialType = "M",
                 )
-                firestoreHelper.addSmartphone(newSmartphone) { smartphoneId ->
+                firestoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
                     if (smartphoneId != null) {
-                        newSmartphone.id = smartphoneId
-                        Log.d("MainActivity", "Added smartphone: $newSmartphone")
+                        mySmartphone.id = smartphoneId
+                        Log.d("MainActivity", "Added smartphone: $mySmartphone")
+                    } else {
+                        Log.e("MainActivity", "Error adding smartphone")
+                    }
+                }
+            } else {
+                Log.e("MainActivity", "Error adding brand")
+            }
+        }
+
+        firestoreHelper.addBrand(samsungBrand) { brandId ->
+            if (brandId != null) {
+                samsungBrand.id = brandId
+                Log.d("MainActivity", "Added brand: $samsungBrand")
+
+                // Create a new smartphone for the brand
+                val mySmartphone = Smartphone(
+                    modelName = "Samsung Galaxy S23 Ultra",
+                    price = 1299.0,
+                    brandId = samsungBrand.id,
+                    serialType = "M",
+                )
+                firestoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
+                    if (smartphoneId != null) {
+                        mySmartphone.id = smartphoneId
+                        Log.d("MainActivity", "Added smartphone: $mySmartphone")
                     } else {
                         Log.e("MainActivity", "Error adding smartphone")
                     }
@@ -72,22 +95,22 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        firestoreHelper.addBrand(newBrand2) { brandId ->
+        firestoreHelper.addBrand(googleBrand) { brandId ->
             if (brandId != null) {
-                newBrand2.id = brandId
-                Log.d("MainActivity", "Added brand: $newBrand2")
+                googleBrand.id = brandId
+                Log.d("MainActivity", "Added brand: $googleBrand")
 
                 // Create a new smartphone for the brand
-                val newSmartphone = Smartphone(
-                    modelName = "Test Smartphone 2",
-                    price = 1000.0,
-                    brandId = newBrand2.id,
+                val mySmartphone = Smartphone(
+                    modelName = "Google Pixel 6 Pro",
+                    price = 900.0,
+                    brandId = googleBrand.id,
                     serialType = "M",
                 )
-                firestoreHelper.addSmartphone(newSmartphone) { smartphoneId ->
+                firestoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
                     if (smartphoneId != null) {
-                        newSmartphone.id = smartphoneId
-                        Log.d("MainActivity", "Added smartphone: $newSmartphone")
+                        mySmartphone.id = smartphoneId
+                        Log.d("MainActivity", "Added smartphone: $mySmartphone")
                     } else {
                         Log.e("MainActivity", "Error adding smartphone")
                     }
@@ -96,56 +119,6 @@ class MainActivity : AppCompatActivity() {
                 Log.e("MainActivity", "Error adding brand")
             }
         }
-
-
-        firestoreHelper.addBrand(newBrand3) { brandId ->
-            if (brandId != null) {
-                newBrand3.id = brandId
-                Log.d("MainActivity", "Added brand: $newBrand3")
-
-                // Create a new smartphone for the brand
-                val newSmartphone = Smartphone(
-                    modelName = "Test Smartphone 3",
-                    price = 1000.0,
-                    brandId = newBrand3.id,
-                    serialType = "M",
-                )
-                firestoreHelper.addSmartphone(newSmartphone) { smartphoneId ->
-                    if (smartphoneId != null) {
-                        newSmartphone.id = smartphoneId
-                        Log.d("MainActivity", "Added smartphone: $newSmartphone")
-                    } else {
-                        Log.e("MainActivity", "Error adding smartphone")
-                    }
-                }
-            } else {
-                Log.e("MainActivity", "Error adding brand")
-            }
-        }
-//        firestoreHelper.addBrand(newBrand) { brandId ->
-//            if (brandId != null) {
-//                newBrand.id = brandId
-//                Log.d("MainActivity", "Added brand: $newBrand")
-//
-//                // Create a new smartphone for the brand
-//                val newSmartphone = Smartphone(
-//                    modelName = "Test Smartphone",
-//                    price = 1000.0,
-//                    brandId = newBrand.id,
-//                    serialType = "M",
-//                )
-//                firestoreHelper.addSmartphone(newSmartphone) { smartphoneId ->
-//                    if (smartphoneId != null) {
-//                        newSmartphone.id = smartphoneId
-//                        Log.d("MainActivity", "Added smartphone: $newSmartphone")
-//                    } else {
-//                        Log.e("MainActivity", "Error adding smartphone")
-//                    }
-//                }
-//            } else {
-//                Log.e("MainActivity", "Error adding brand")
-//            }
-//        }
 
         // Fetch all brands and update the adapter with the list of brands
 //        firestoreHelper.getAllBrands { brands ->

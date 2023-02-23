@@ -36,9 +36,18 @@ class FirestoreHelper {
         db.collection("brands")
             .add(brand)
             .addOnSuccessListener { documentReference ->
-                onComplete(documentReference.id)
+                val brandId = documentReference.id
+                db.collection("brands").document(brandId)
+                    .update("id", brandId)
+                    .addOnSuccessListener {
+//                        onComplete(true)
+                        onComplete(documentReference.id)
+                    }
+                    .addOnFailureListener {
+                        onComplete(null)
+                    }
             }
-            .addOnFailureListener {exception ->
+            .addOnFailureListener {
                 onComplete(null)
             }
     }
@@ -107,12 +116,22 @@ class FirestoreHelper {
     /* Smartphone CRUD methods */
     // CREATE a Smartphone on the smartphones database collection
     fun addSmartphone(smartphone: Smartphone, onComplete: (String?) -> Unit) {
-        db.collection("smartphones")
+        db.collection("brands").document(smartphone.brandId!!)
+            .collection("smartphones")
             .add(smartphone)
             .addOnSuccessListener { documentReference ->
-                onComplete(documentReference.id)
+                val smartphoneId = documentReference.id
+                db.collection("brands").document(smartphone.brandId!!)
+                    .collection("smartphones").document(smartphoneId)
+                    .update("id", smartphoneId)
+                    .addOnSuccessListener {
+                        onComplete(documentReference.id)
+                    }
+                    .addOnFailureListener {
+                        onComplete(null)
+                    }
             }
-            .addOnFailureListener { exception ->
+            .addOnFailureListener {
                 onComplete(null)
             }
     }
