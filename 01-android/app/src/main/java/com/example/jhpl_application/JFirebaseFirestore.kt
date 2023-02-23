@@ -1,14 +1,19 @@
 package com.example.jhpl_application
 
-import android.app.DownloadManager.Query
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.QueryDocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.Query
+import java.util.*
+import kotlin.collections.ArrayList
 
 class JFirebaseFirestore : AppCompatActivity() {
     var query: Query? = null
@@ -41,6 +46,90 @@ class JFirebaseFirestore : AppCompatActivity() {
         botonFirebaseIndiceCompuesto.setOnClickListener{
             consultarIndiceCompuesto(adaptador)
         }
+
+        val botonFirebaseCrear = findViewById<Button>(R.id.btn_fs_crear)
+        botonFirebaseCrear.setOnClickListener {
+            crearDatosEjemplo()
+        }
+
+        val botonFirebaseEliminar = findViewById<Button>(R.id.btn_fs_eliminar)
+        botonFirebaseEliminar.setOnClickListener { eliminarRegistro() }
+
+        val botonFirebaseEmpezarPaginar = findViewById<Button>(R.id.btn_fs_epaginar)
+        botonFirebaseEmpezarPaginar.setOnClickListener { query = null; consultarCiudades(adaptador); }
+    }
+
+    fun consultarCiudades(adaptador: ArrayAdapter<JCitiesDto>){
+        val db = Firebase.firestore
+        val citiesRef = db.collection("cities").orderBy("population").limit(1)
+
+        var tarea: Task<QuerySnapshot>? = null
+        if (query == null) {
+            tarea = citiesRef.get() // 1era
+            limpiarArreglo()
+            adaptador.notifyDataSetChanged()
+        } else {
+            tarea = query!!.get()
+        }
+    }
+
+    // [1, 2, 3, 4, 5, 6, 7]
+    // 4 primeros [1, 2, 3, 4]
+    // [1, 3, 5, 6, 7, 10, 12]
+    // 4 primeros [1, 3, 5, 6]
+    // [1, 3, 5, 6, 7, 10, 12]
+    // 4 primeros x => [1, 3, 5, 6]
+    fun eliminarRegistro() {
+        val db = Firebase.firestore
+        val referenciaEjemploEstudiante = db
+            .collection("ejemplo")
+            .document("123456789")
+            .collection("estudiante")
+
+        referenciaEjemploEstudiante
+            .document("123456789")
+            .delete()
+            .addOnCompleteListener { /* Si todo salio bien */ }
+            .addOnFailureListener { /* Si algo salio mal */ }
+    }
+
+    fun crearDatosEjemplo(){
+        val db = Firebase.firestore
+        val referenciaEjemploEstudiante = db
+            .collection("ejemplo") // ejemplo/123456789/estudiante/...
+            .document("123456789")
+            .collection("estudiante")
+        val identificador = Date().time
+        val datosEstudiante = hashMapOf(
+            "nombre" to "Jonathan",
+            "graduado" to false,
+            "premedio" to false,
+            "direccion" to hashMapOf(
+                "direccion" to "Mitad del mundo",
+                "numeroCalle" to 1234
+            ),
+            "materias" to listOf("web", "moviles")
+        )
+
+        // Con identificador quemado
+        referenciaEjemploEstudiante
+            .document("123456789")
+            .set(datosEstudiante) // actualiza o crea
+            .addOnCompleteListener {/* Si todo salio bien */ }
+            .addOnFailureListener{ /*Si algo salio mal */ }
+
+        // Con identificador generado en Date.time
+        referenciaEjemploEstudiante
+            .document(identificador.toString())
+            .set(datosEstudiante) // actualiza o crea
+            .addOnCompleteListener {/* Si todo salio bien */ }
+            .addOnFailureListener{ /*Si algo salio mal */ }
+
+        // Sin identificador
+        referenciaEjemploEstudiante
+            .add(datosEstudiante) // crea
+            .addOnCompleteListener {/* Si todo salio bien */ }
+            .addOnFailureListener{ /*Si algo salio mal */ }
     }
 
     fun consultarIndiceCompuesto(adaptador: ArrayAdapter<JCitiesDto>) {
