@@ -15,10 +15,10 @@
 
         <ImageView
             android:id="@+id/brandImageView"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/place_holder"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/circle"
             tools:ignore="MissingConstraints"
             android:contentDescription="TODO" />
 
@@ -33,11 +33,15 @@
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/brand_options"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/arrow_right"
-            tools:ignore="MissingConstraints"
+            android:src="@drawable/right_arrow"
+            android:scaleType="fitCenter"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="TODO" />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

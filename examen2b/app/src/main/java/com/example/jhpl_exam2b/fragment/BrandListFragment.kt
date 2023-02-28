@@ -32,7 +32,8 @@ class BrandListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_list_brand, container, false)
@@ -68,13 +69,5 @@ class BrandListFragment : Fragment() {
 
     companion object {
         private const val TAG = "BrandListFragment"
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BrandListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

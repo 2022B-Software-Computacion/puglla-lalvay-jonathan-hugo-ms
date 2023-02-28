@@ -3,10 +3,8 @@ package com.example.jhpl_exam2b.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.RecyclerView
 import com.example.jhpl_exam2b.R
-import com.example.jhpl_exam2b.adapter.BrandAdapter
-import com.example.jhpl_exam2b.firestore.FirestoreHelper
+import com.example.jhpl_exam2b.firestore.FireStoreHelper
 import com.example.jhpl_exam2b.fragment.BrandListFragment
 import com.example.jhpl_exam2b.model.Brand
 import com.example.jhpl_exam2b.model.Smartphone
@@ -14,10 +12,9 @@ import com.example.jhpl_exam2b.model.Smartphone
 class MainActivity : AppCompatActivity() {
     /* Attributes */
     /* ---------------------------------------------- */
-    private val firestoreHelper = FirestoreHelper()
-    private lateinit var adapter: BrandAdapter
-    private lateinit var recyclerView: RecyclerView
+    private val fireStoreHelper = FireStoreHelper()
     private var brands: ArrayList<Brand> = ArrayList()
+
     /* Methods */
     /* ---------------------------------------------- */
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,14 +34,7 @@ class MainActivity : AppCompatActivity() {
         brands.add(samsungBrand)
         brands.add(googleBrand)
 
-        //recyclerView = findViewById(R.id.brandRV)
-//        val layoutManager = GridLayoutManager(this, 2)
-//        recyclerView.layoutManager = layoutManager
-//        recyclerView.layoutManager = LinearLayoutManager(this)
-//        adapter = BrandAdapter(brands)
-//        recyclerView.adapter = adapter
-
-        firestoreHelper.addBrand(appleBrand) { brandId ->
+        fireStoreHelper.addBrand(appleBrand) { brandId ->
             if (brandId != null) {
                 appleBrand.id = brandId
                 Log.d("MainActivity", "Added brand: $appleBrand")
@@ -56,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                     brandId = appleBrand.id,
                     serialType = "M",
                 )
-                firestoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
+                fireStoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
                     if (smartphoneId != null) {
                         mySmartphone.id = smartphoneId
                         Log.d("MainActivity", "Added smartphone: $mySmartphone")
@@ -69,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        firestoreHelper.addBrand(samsungBrand) { brandId ->
+        fireStoreHelper.addBrand(samsungBrand) { brandId ->
             if (brandId != null) {
                 samsungBrand.id = brandId
                 Log.d("MainActivity", "Added brand: $samsungBrand")
@@ -81,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                     brandId = samsungBrand.id,
                     serialType = "M",
                 )
-                firestoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
+                fireStoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
                     if (smartphoneId != null) {
                         mySmartphone.id = smartphoneId
                         Log.d("MainActivity", "Added smartphone: $mySmartphone")
@@ -94,8 +84,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-        firestoreHelper.addBrand(googleBrand) { brandId ->
+        fireStoreHelper.addBrand(googleBrand) { brandId ->
             if (brandId != null) {
                 googleBrand.id = brandId
                 Log.d("MainActivity", "Added brand: $googleBrand")
@@ -107,7 +96,7 @@ class MainActivity : AppCompatActivity() {
                     brandId = googleBrand.id,
                     serialType = "M",
                 )
-                firestoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
+                fireStoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
                     if (smartphoneId != null) {
                         mySmartphone.id = smartphoneId
                         Log.d("MainActivity", "Added smartphone: $mySmartphone")
@@ -120,32 +109,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Fetch all brands and update the adapter with the list of brands
-//        firestoreHelper.getAllBrands { brands ->
-//            if (brands != null) {
-//                adapter.updateData(brands)
-//            } else {
-//                Toast.makeText(this, "Error fetching brands", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-
-//    }
-
-//        val brandId = "123"
-//        smartphoneRecyclerView = findViewById(R.id.smartphoneRV)
-//        smartphoneRecyclerView.layoutManager = LinearLayoutManager(this)
-//        adapter = SmartphoneAdapter(listOf()) // initialize the adapter with an empty list
-//        smartphoneRecyclerView.adapter = adapter
-//
-//        firestoreHelper.getSmartphonesByBrandId(brandId) {smartphones ->
-//            if (smartphones != null) {
-//                adapter = SmartphoneAdapter(smartphones)
-//                smartphoneRecyclerView.adapter = adapter
-//            } else {
-//                Toast.makeText(this, "Failed to fetch smartphones", Toast.LENGTH_SHORT)
-//                    .show()
-//            }
-//        }
-//    }
     }
 }
