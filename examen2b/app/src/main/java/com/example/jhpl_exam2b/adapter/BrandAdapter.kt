@@ -1,18 +1,17 @@
 package com.example.jhpl_exam2b.adapter
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jhpl_exam2b.R
-import com.example.jhpl_exam2b.firestore.FireStoreHelper
+import com.example.jhpl_exam2b.firestore.FirestoreHelper
 import com.example.jhpl_exam2b.model.Brand
 import com.google.firebase.firestore.ListenerRegistration
 
@@ -22,18 +21,27 @@ class BrandAdapter(
     /* Attributes */
     /* ---------------------------------------------- */
     private lateinit var context: Context
-    private lateinit var fireStoreHelper: FireStoreHelper
-    private lateinit var listenerRegistration: ListenerRegistration // declare the variable here
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        context = recyclerView.context
-        fireStoreHelper = FireStoreHelper()
-    }
+    private lateinit var firestoreHelper: FirestoreHelper
+    private lateinit var listenerRegistration: ListenerRegistration
+    private lateinit var brandAdapter: BrandAdapter
+    private var onBrandClickListener: OnBrandClickListener? = null
 
     /* Methods */
     /* ---------------------------------------------- */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrandAdapter.BrandViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_brand, parent, false)
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
+        firestoreHelper = FirestoreHelper()
+    }
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): BrandAdapter.BrandViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_brand, parent, false
+        )
+        brandAdapter = BrandAdapter(brands)
         return BrandViewHolder(view)
     }
 
@@ -57,15 +65,27 @@ class BrandAdapter(
         listenerRegistration.remove()
     }
 
+    fun setOnBrandClickListener(listener: OnBrandClickListener) {
+        onBrandClickListener = listener
+    }
+
+    interface OnBrandClickListener {
+        fun onBrandClick(brandId: String)
+        fun onOptionsItemSelected(item: MenuItem): Boolean
+    }
+
+    /* View Holder Class */
+    /* ---------------------------------------------- */
     inner class BrandViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
         /* Attributes */
         /* ---------------------------------------------- */
         private val brandNameTextView: TextView = itemView.findViewById(R.id.brandNameTextView)
         private val brandOptionsButton: ImageButton = itemView.findViewById(R.id.brand_options)
 
+        /* Methods */
+        /* ---------------------------------------------- */
         fun bind(brand: Brand) {
             brandNameTextView.text = brand.name
-
             brandOptionsButton.setOnClickListener {
                 showBrandOptionsMenu(brand)
             }
@@ -78,38 +98,18 @@ class BrandAdapter(
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.edit_brand_menu_item -> {
-                        // Handle edit brand action
+                        onBrandClickListener?.onBrandClick(brand.id!!)
+                        onBrandClickListener?.onOptionsItemSelected(menuItem)
                         true
                     }
                     R.id.delete_brand_menu_item -> {
-                        AlertDialog.Builder(context)
-                            .setMessage("Are you sure you want to delete this brand?")
-                            .setPositiveButton("Delete") { dialog, _ ->
-                                // Delete the brand and associated smartphones from FireStore
-                                // Delete the brand from FireStore
-                                fireStoreHelper.deleteBrand(brand.id!!) { isSuccess ->
-                                    if (isSuccess) {
-                                        // Fetch updated data from FireStore
-                                        fireStoreHelper.getBrands {
-                                            // Pass updated data to the adapter
-                                            // Notify the adapter of the data change
-                                            notifyDataSetChanged()
-                                            Toast.makeText(context, "Brand deleted successfully", Toast.LENGTH_SHORT).show()
-                                        }
-                                    } else {
-                                        Toast.makeText(context, "Error deleting brand", Toast.LENGTH_SHORT).show()
-                                    }
-                                }
-                                dialog.dismiss()
-                            }
-                            .setNegativeButton("Cancel") { dialog, _ ->
-                                dialog.dismiss()
-                            }
-                            .show()
+                        onBrandClickListener?.onBrandClick(brand.id!!)
+                        onBrandClickListener?.onOptionsItemSelected(menuItem)
                         true
                     }
                     R.id.view_smartphones_menu_item -> {
-                        // Handle view smartphones action
+                        onBrandClickListener?.onBrandClick(brand.id!!)
+                        onBrandClickListener?.onOptionsItemSelected(menuItem)
                         true
                     }
                     else -> false

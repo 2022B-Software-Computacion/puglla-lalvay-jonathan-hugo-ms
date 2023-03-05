@@ -9,38 +9,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         android:orientation="horizontal"
         tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/brandImageView"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:contentDescription="@string/image_handler"
             android:scaleType="fitCenter"
             android:src="@drawable/circle"
-            tools:ignore="MissingConstraints"
-            android:contentDescription="TODO" />
+            tools:ignore="MissingConstraints,ImageContrastCheck" />
 
         <TextView
             android:id="@+id/brandNameTextView"
             android:layout_width="0dp"
-            android:layout_height="24dp"
+            android:layout_height="38dp"
             android:layout_marginStart="16dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text="@string/brand_name"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints,TextSizeCheck" />
 
         <ImageButton
             android:id="@+id/brand_options"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/right_arrow"
-            android:scaleType="fitCenter"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/displays_action_items"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dots"
+            tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
 
 
     </LinearLayout>

@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.BrandListFragment">
+    tools:context=".fragment.SmartphoneListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/brandRV"
+        android:id="@+id/smartphoneRV"
         android:layout_width="match_parent"
-        android:padding="16dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:padding="16dp" />
 
 </FrameLayout>

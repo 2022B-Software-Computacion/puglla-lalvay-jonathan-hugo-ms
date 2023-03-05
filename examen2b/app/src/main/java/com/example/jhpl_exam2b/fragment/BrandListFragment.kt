@@ -1,28 +1,38 @@
 package com.example.jhpl_exam2b.fragment
 
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jhpl_exam2b.R
+import com.example.jhpl_exam2b.activity.EditBrandActivity
+import com.example.jhpl_exam2b.activity.SmartphoneListActivity
 import com.example.jhpl_exam2b.adapter.BrandAdapter
-import com.example.jhpl_exam2b.model.Brand
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
+import com.example.jhpl_exam2b.firestore.FirestoreHelper
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class BrandListFragment : Fragment() {
+class BrandListFragment : Fragment(), BrandAdapter.OnBrandClickListener {
+    /* Attributes */
+    /* ---------------------------------------------- */
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var brandAdapter: BrandAdapter
+    private val firestoreHelper = FirestoreHelper()
+    private var selectedBrandId: String? = null
 
+    /* Methods */
+    /* ---------------------------------------------- */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -31,43 +41,94 @@ class BrandListFragment : Fragment() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onBrandClick(brandId: String) {
+        // Update the selected brandId
+        selectedBrandId = brandId
+        // Refresh the adapter to highlight the selected brand
+        brandAdapter.notifyDataSetChanged()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_list_brand, container, false)
-
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_brand_list, container, false)
         recyclerView = view.findViewById(R.id.brandRV)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        brandAdapter = BrandAdapter(emptyList())
-        recyclerView.adapter = brandAdapter
-
-        getBrands()
-
         return view
     }
 
-    private fun getBrands() {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("brands")
-            .get()
-            .addOnSuccessListener { result ->
-                val brands = mutableListOf<Brand>()
-                for (document in result) {
-                    val brand = document.toObject<Brand>()
-                    brand.id = document.id
-                    brands.add(brand)
-                }
-                brandAdapter.updateData(brands)
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting brands", exception)
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Initialize adapter and set it to RecyclerView
+        brandAdapter = BrandAdapter(emptyList())
+        brandAdapter.setOnBrandClickListener(this)
+        recyclerView.adapter = brandAdapter
+
+        // Load data from Firestore and set it to adapter
+        firestoreHelper.getAllBrands { brands ->
+            brandAdapter.updateData(brands!!)
+        }
     }
 
-    companion object {
-        private const val TAG = "BrandListFragment"
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.edit_brand_menu_item -> {
+                // Start the EditBrandActivity and pass the selected brand ID
+                val intent = Intent(context, EditBrandActivity::class.java)
+                intent.putExtra("brandId", selectedBrandId)
+                startActivity(intent)
+                true
+            }
+            R.id.delete_brand_menu_item -> {
+                        AlertDialog.Builder(context)
+                            .setMessage("Are you sure you want to delete this brand?")
+                            .setPositiveButton("Delete") { dialog, _ ->
+                                // Delete the brand and associated smartphones from FireStore
+                                // Delete the brand from FireStore
+                                firestoreHelper.deleteBrand(selectedBrandId!!) { isSuccess ->
+                                    if (isSuccess) {
+                                        // Fetch updated data from FireStore
+                                        firestoreHelper.getAllBrands { brands ->
+                                            // Pass updated data to the adapter
+                                            brandAdapter.updateData(brands!!)
+                                            // Notify the adapter of the data change
+                                            brandAdapter.notifyDataSetChanged()
+                                            Toast.makeText(
+                                                context,
+                                                "Brand deleted successfully",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    } else {
+                                        Toast.makeText(
+                                            context,
+                                            "Error deleting brand",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("Cancel") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                        true
+                    }
+            R.id.view_smartphones_menu_item -> {
+                // Start the SmartphoneListActivity and pass the selected brand ID
+                val intent = Intent(context, SmartphoneListActivity::class.java)
+                intent.putExtra("brandId", selectedBrandId)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

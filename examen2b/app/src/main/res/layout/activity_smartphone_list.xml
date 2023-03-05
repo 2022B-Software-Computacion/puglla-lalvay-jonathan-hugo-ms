@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".activity.SmartphoneListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,30 +14,29 @@
         tools:ignore="MissingConstraints">
 
         <TextView
+            android:id="@+id/smartphoneNameTitleTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/brand_list"
+            android:text="@string/smartphone_list"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginTop="16dp"/>
 
         <Button
-            android:id="@+id/btnAddBrand"
+            android:id="@+id/addSmartphone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/brand_list_button_background"
-            android:text="@string/add_a_brand"
+            android:text="@string/add_a_smartphone"
             android:textSize="18sp"
             android:layout_marginTop="16dp"/>
 
         <FrameLayout
-            android:id="@+id/fragment_brand"
+            android:id="@+id/fragment_smartphone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             tools:ignore="MissingConstraints" />
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

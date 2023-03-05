@@ -6,12 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".adapter.SmartphoneAdapter">
 
-    <TextView
-        android:id="@+id/smartphoneNameTxt"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Smartphone"
-        tools:layout_editor_absoluteX="21dp"
-        tools:layout_editor_absoluteY="23dp"
-        tools:ignore="MissingConstraints" />
+        android:paddingStart="0dp"
+        android:paddingEnd="0dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/smartphoneImageView"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:contentDescription="@string/image_handler"
+            android:scaleType="fitCenter"
+            android:src="@drawable/circle"
+            tools:ignore="MissingConstraints,ImageContrastCheck" />
+
+        <TextView
+            android:id="@+id/smartphoneNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/smartphone_model_name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints,TextSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/smartphone_options"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/displays_action_items"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dots"
+            tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
+
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

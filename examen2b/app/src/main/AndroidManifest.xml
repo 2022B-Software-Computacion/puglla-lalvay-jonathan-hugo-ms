@@ -11,7 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Jhplexam2b"
         tools:targetApi="31">
-
+        <activity
+            android:name=".activity.EditSmartphoneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.EditBrandActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SmartphoneListActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">

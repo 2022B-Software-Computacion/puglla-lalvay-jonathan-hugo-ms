@@ -3,4 +3,37 @@
     <string name="brand_name">Brand Name</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="smartphone_model_name">Smartphone Model Name</string>
+    <string name="displays_action_items">Displays action items</string>
+    <string name="image_handler">Image handler</string>
+    <string name="delete_brand">Delete Brand</string>
+    <string name="edit_brand">Edit Brand</string>
+    <string name="view_smartphones">View Smartphones</string>
+    <string name="edit_smartphone">Edit Smartphone</string>
+    <string name="delete_smartphone">Delete Smartphone</string>
+    <string name="add_a_brand">Add a Brand</string>
+    <string name="brand_list">Brand List</string>
+    <string name="add_a_smartphone">Add a Smartphone</string>
+    <string name="smartphone_list">Smartphone List</string>
+    <string name="brand_name_edit">Brand Name</string>
+    <string name="enter_brand_name_edit">Enter brand name</string>
+    <string name="brand_price_edit">Brand Price</string>
+    <string name="enter_brand_price_edit">Enter brand price</string>
+    <string name="brand_status_edit">Brand Status</string>
+    <string name="brand_has_a_webpage_edit">Brand has a webpage</string>
+    <string name="save_changes_edit">Save Changes</string>
+    <string name="status_prompt">Select status</string>
+    <string name="edit_brand_data">Edit Brand Data</string>
+    <string name="edit_smartphone_data">Edit Smartphone Data</string>
+    <string name="smartphone_model_name_edit">Smartphone Model Name</string>
+    <string name="enter_smartphone_model_name">Enter smartphone model name</string>
+    <string name="smartphone_price_edit">Smartphone Price</string>
+    <string name="enter_smartphone_price">Enter smartphone price</string>
+    <string name="smartphone_serial_type">Smartphone Serial Type</string>
+    <string name="select_serial_type">Select Serial Type</string>
+    <string-array name="brand_status_options">
+        <item>Active</item>
+        <item>New</item>
+        <item>Banned</item>
+    </string-array>
 </resources>
