@@ -6,7 +6,7 @@ data class Brand (
     var id: String? = null,
     var name: String? = null,
     var price: Double? = null,
-    // A -> Active, N -> New, B -> Banned
+    // Active, New, Banned
     var status: String? = null,
     var hasAWebPage: Boolean? = null
 )

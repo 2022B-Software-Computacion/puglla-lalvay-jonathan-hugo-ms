@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.EditBrandActivity">
+    tools:context=".activity.AddABrandActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
             android:id="@+id/brandEditTitleTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/edit_brand_data"
+            android:text="@string/create_a_brand"
             android:textSize="24sp"
             android:textStyle="bold"
             android:paddingStart="0dp"
@@ -36,7 +36,7 @@
             android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/editTxt_brand_name"
+            android:id="@+id/editTxt_create_brand_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_brand_name_edit"
@@ -57,7 +57,7 @@
             android:layout_marginTop="24dp"/>
 
         <EditText
-            android:id="@+id/editTxt_brand_price"
+            android:id="@+id/editTxt_add_a_brand_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/enter_brand_price_edit"
@@ -78,20 +78,20 @@
             android:layout_marginTop="24dp"/>
 
         <Spinner
-            android:id="@+id/spinner_brand_status"
+            android:id="@+id/spinner_add_a_brand_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:accessibilityLiveRegion="polite"
             android:contentDescription="@string/status_prompt"
             android:importantForAccessibility="yes"
-            android:labelFor="@id/spinner_brand_status"
+            android:labelFor="@id/spinner_add_a_brand_status"
             android:minHeight="48dp"
             android:padding="12dp"
             android:prompt="@string/status_prompt"
             android:textSize="16sp" />
 
         <CheckBox
-            android:id="@+id/checkbox_brand_has_a_webpage"
+            android:id="@+id/checkbox_add_brand_has_a_webpage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/brand_has_a_webpage_edit"
@@ -100,11 +100,11 @@
             android:layout_marginTop="24dp"/>
 
         <Button
-            android:id="@+id/button_edit_brand"
+            android:id="@+id/button_save_new_brand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:text="@string/save_changes_edit"
+            android:text="@string/create_brand"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:background="@color/purple_500"
@@ -113,6 +113,5 @@
             tools:ignore="VisualLintButtonSize" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

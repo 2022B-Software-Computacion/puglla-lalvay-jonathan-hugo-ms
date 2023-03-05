@@ -31,9 +31,19 @@
     <string name="enter_smartphone_price">Enter smartphone price</string>
     <string name="smartphone_serial_type">Smartphone Serial Type</string>
     <string name="select_serial_type">Select Serial Type</string>
+    <string name="create_a_brand">Create a Brand</string>
+    <string name="create_brand">Create Brand</string>
+    <string name="create_a_smartphone">Create a Smartphone</string>
+    <string name="create_smartphone">Create Smartphone</string>
     <string-array name="brand_status_options">
         <item>Active</item>
         <item>New</item>
         <item>Banned</item>
+    </string-array>
+    <string-array name="smartphone_serial_type_options">
+        <item>Brand New</item>
+        <item>Refurbished</item>
+        <item>Replacement device</item>
+        <item>Personalized device</item>
     </string-array>
 </resources>

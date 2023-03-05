@@ -22,13 +22,15 @@
             android:layout_marginTop="16dp"/>
 
         <Button
-            android:id="@+id/btnAddBrand"
+            android:id="@+id/button_create_brand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:background="@color/brand_list_button_background"
             android:text="@string/add_a_brand"
+            android:textColor="#37474F"
             android:textSize="18sp"
-            android:layout_marginTop="16dp"/>
+            tools:ignore="VisualLintButtonSize" />
 
         <FrameLayout
             android:id="@+id/fragment_brand"

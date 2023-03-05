@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.EditSmartphoneActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,8 +22,8 @@
             android:textStyle="bold"
             android:paddingStart="0dp"
             android:paddingEnd="16dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="28dp"
             android:gravity="center_vertical|start"
             android:layout_marginTop="16dp"/>
 

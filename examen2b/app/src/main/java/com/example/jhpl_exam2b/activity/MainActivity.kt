@@ -1,8 +1,11 @@
 package com.example.jhpl_exam2b.activity
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import com.example.jhpl_exam2b.R
 import com.example.jhpl_exam2b.firestore.FirestoreHelper
 import com.example.jhpl_exam2b.fragment.BrandListFragment
@@ -17,22 +20,41 @@ class MainActivity : AppCompatActivity() {
 
     /* Methods */
     /* ---------------------------------------------- */
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Local Attributes
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
         val brandListFragment = BrandListFragment()
+        val createBrandButton: Button = findViewById(R.id.button_create_brand)
         fragmentTransaction.add(R.id.fragment_brand, brandListFragment)
         fragmentTransaction.commit()
 
+        createBrandButton.setOnClickListener {
+            val intent = Intent(this, AddABrandActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Create test data if empty array is given o brands
+        createTestData()
+    }
+
+    private fun createTestData() {
         fireStoreHelper.getAllBrands { myBrands ->
             brands.addAll(myBrands!!)
             if(brands.isEmpty()) {
-                val appleBrand = Brand(name = "Apple", price = 100000.0, status = "Active", hasAWebPage = true)
-                val samsungBrand = Brand(name = "Samsung", price = 200000.0, status = "New", hasAWebPage = true)
-                val googleBrand = Brand(name = "Google", price = 300000.0, status = "Banned", hasAWebPage = true)
+                val appleBrand = Brand(
+                    name = "Apple", price = 100000.0, status = "Active", hasAWebPage = true
+                )
+                val samsungBrand = Brand(
+                    name = "Samsung", price = 200000.0, status = "New", hasAWebPage = true
+                )
+                val googleBrand = Brand(
+                    name = "Google", price = 300000.0, status = "Banned", hasAWebPage = true
+                )
                 brands.add(appleBrand)
                 brands.add(samsungBrand)
                 brands.add(googleBrand)
@@ -47,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                             modelName = "iPhone 14 Pro Max",
                             price = 1099.0,
                             brandId = appleBrand.id,
-                            serialType = "M",
+                            serialType = "Brand New",
                         )
                         fireStoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
                             if (smartphoneId != null) {
@@ -72,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                             modelName = "Galaxy S23 Ultra",
                             price = 1299.0,
                             brandId = samsungBrand.id,
-                            serialType = "M",
+                            serialType = "Refurbished",
                         )
                         fireStoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
                             if (smartphoneId != null) {
@@ -97,7 +119,7 @@ class MainActivity : AppCompatActivity() {
                             modelName = "Google Pixel 6 Pro",
                             price = 900.0,
                             brandId = googleBrand.id,
-                            serialType = "M",
+                            serialType = "Personalized device",
                         )
                         fireStoreHelper.addSmartphone(mySmartphone) { smartphoneId ->
                             if (smartphoneId != null) {
@@ -113,6 +135,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 }

@@ -28,8 +28,10 @@
             android:layout_height="wrap_content"
             android:background="@color/brand_list_button_background"
             android:text="@string/add_a_smartphone"
+            android:textColor="#37474F"
             android:textSize="18sp"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            tools:ignore="VisualLintButtonSize" />
 
         <FrameLayout
             android:id="@+id/fragment_smartphone"

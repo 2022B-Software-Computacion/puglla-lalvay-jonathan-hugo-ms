@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.EditBrandActivity">
-
+    tools:context=".activity.AddASmartphoneActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,10 +13,10 @@
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/brandEditTitleTxt"
+            android:id="@+id/smartphoneEditTitleTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/edit_brand_data"
+            android:text="@string/create_a_smartphone"
             android:textSize="24sp"
             android:textStyle="bold"
             android:paddingStart="0dp"
@@ -30,16 +29,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/brand_name_edit"
+            android:text="@string/smartphone_model_name_edit"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
         <EditText
-            android:id="@+id/editTxt_brand_name"
+            android:id="@+id/editTxt_create_smartphone_model_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_brand_name_edit"
+            android:hint="@string/enter_smartphone_model_name"
             android:minHeight="48dp"
             android:padding="12dp"
             android:textSize="16sp"
@@ -50,17 +49,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/brand_price_edit"
+            android:text="@string/smartphone_price_edit"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"/>
 
         <EditText
-            android:id="@+id/editTxt_brand_price"
+            android:id="@+id/editTxt_create_smartphone_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_brand_price_edit"
+            android:hint="@string/enter_smartphone_price"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
             android:padding="12dp"
@@ -71,40 +70,31 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/brand_status_edit"
+            android:text="@string/smartphone_serial_type"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginTop="24dp"/>
 
         <Spinner
-            android:id="@+id/spinner_brand_status"
+            android:id="@+id/spinner_create_smartphone_serial_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:accessibilityLiveRegion="polite"
-            android:contentDescription="@string/status_prompt"
+            android:contentDescription="@string/select_serial_type"
             android:importantForAccessibility="yes"
-            android:labelFor="@id/spinner_brand_status"
+            android:labelFor="@id/spinner_create_smartphone_serial_type"
             android:minHeight="48dp"
             android:padding="12dp"
-            android:prompt="@string/status_prompt"
+            android:prompt="@string/select_serial_type"
             android:textSize="16sp" />
 
-        <CheckBox
-            android:id="@+id/checkbox_brand_has_a_webpage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/brand_has_a_webpage_edit"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:layout_marginTop="24dp"/>
-
         <Button
-            android:id="@+id/button_edit_brand"
+            android:id="@+id/button_create_smartphone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:text="@string/save_changes_edit"
+            android:text="@string/create_smartphone"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:background="@color/purple_500"
@@ -113,6 +103,4 @@
             tools:ignore="VisualLintButtonSize" />
 
     </LinearLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

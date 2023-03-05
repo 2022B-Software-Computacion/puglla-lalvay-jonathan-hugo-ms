@@ -2,16 +2,20 @@ package com.example.jhpl_exam2b.fragment
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jhpl_exam2b.R
+import com.example.jhpl_exam2b.activity.AddASmartphoneActivity
+import com.example.jhpl_exam2b.activity.EditSmartphoneActivity
 import com.example.jhpl_exam2b.adapter.SmartphoneAdapter
 import com.example.jhpl_exam2b.firestore.FirestoreHelper
 
@@ -70,9 +74,18 @@ class SmartphoneListFragment : Fragment(), SmartphoneAdapter.OnSmartphoneClickLi
         // Load data from Firestore and set it to the adapter
         brandId = arguments?.getString("brandId")
         if (brandId != null) {
+            // Load data from Firestore and set it to adapter
             firestoreHelper.getSmartphonesByBrandId(brandId!!) { smartphones ->
                 smartphoneAdapter.updateData(smartphones)
             }
+        }
+
+        val createSmartphoneButtonId = arguments?.getInt("createSmartphoneButtonId")
+        activity?.findViewById<Button>(createSmartphoneButtonId!!)?.setOnClickListener {
+            // Create an intent to start the CreateSmartphoneActivity
+            val intent = Intent(context, AddASmartphoneActivity::class.java)
+            intent.putExtra("brandId", brandId)
+            startActivity(intent)
         }
     }
 
@@ -80,6 +93,11 @@ class SmartphoneListFragment : Fragment(), SmartphoneAdapter.OnSmartphoneClickLi
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.edit_smartphone_menu_item -> {
+                // Start the EditSmartphoneActivity and pass the selected brand ID
+                val intent = Intent(context, EditSmartphoneActivity::class.java)
+                intent.putExtra("brandId", brandId)
+                intent.putExtra("smartphoneId", selectedSmartphoneId)
+                startActivity(intent)
                 true
             }
             R.id.delete_smartphone_menu_item -> {
@@ -87,7 +105,9 @@ class SmartphoneListFragment : Fragment(), SmartphoneAdapter.OnSmartphoneClickLi
                     .setMessage("Are you sure you want to delete this smartphone?")
                     .setPositiveButton("Delete") {dialog, _ ->
                         // Delete the smartphone from FireStore
-                        firestoreHelper.deleteSmartphone(selectedSmartphoneId!!, brandId!!){ isSuccess ->
+                        firestoreHelper.deleteSmartphone(
+                            selectedSmartphoneId!!, brandId!!
+                        ){ isSuccess ->
                             if (isSuccess) {
                                 firestoreHelper.getSmartphonesByBrandId(selectedSmartphoneId!!) {
                                     smartphones ->

@@ -7,10 +7,10 @@ data class Smartphone (
     var modelName: String? = null,
     var price: Double? = null,
     /*
-    * M -> Brand New,
-    * F -> Refurbished,
-    * N -> Replacement device, and
-    * P -> Personalized device
+    * Brand New,
+    * Refurbished,
+    * Replacement device, and
+    * Personalized device
     * */
     var serialType: String? = null,
     var brandId: String? = null

@@ -15,6 +15,7 @@ class SmartphoneListActivity : AppCompatActivity() {
 
     /* Methods */
     /* ---------------------------------------------- */
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_smartphone_list)
@@ -27,6 +28,7 @@ class SmartphoneListActivity : AppCompatActivity() {
         val smartphoneListFragment = SmartphoneListFragment()
 
         setBrandNameToTextView(brandId!!, titleTextView)
+        bundle.putInt("createSmartphoneButtonId", R.id.addSmartphone)
         bundle.putString("brandId", brandId)
         smartphoneListFragment.arguments = bundle
         fragmentTransaction.add(R.id.fragment_smartphone, smartphoneListFragment)

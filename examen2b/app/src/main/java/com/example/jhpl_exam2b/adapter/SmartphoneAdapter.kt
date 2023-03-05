@@ -77,8 +77,12 @@ class SmartphoneAdapter(
     /* Classes */
     /* ---------------------------------------------- */
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val smartphoneNameTextView: TextView = itemView.findViewById(R.id.smartphoneNameTextView)
-        private val smartphoneOptionsButton: ImageButton = itemView.findViewById(R.id.smartphone_options)
+        private val smartphoneNameTextView: TextView = itemView.findViewById(
+            R.id.smartphoneNameTextView
+        )
+        private val smartphoneOptionsButton: ImageButton = itemView.findViewById(
+            R.id.smartphone_options
+        )
 
         fun bind(smartphone: Smartphone) {
             smartphoneNameTextView.text = smartphone.modelName
@@ -93,6 +97,8 @@ class SmartphoneAdapter(
             popupMenu.setOnMenuItemClickListener { menuItem ->
                 when(menuItem.itemId) {
                     R.id.edit_smartphone_menu_item -> {
+                        onSmartphoneClickListener?.onSmartphoneClick(smartphone.id!!)
+                        onSmartphoneClickListener?.onOptionsItemSelected(menuItem)
                         true
                     }
                     R.id.delete_smartphone_menu_item -> {
